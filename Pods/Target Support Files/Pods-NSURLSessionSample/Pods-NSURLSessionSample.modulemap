@@ -1,0 +1,6 @@
+framework module Pods_NSURLSessionSample {
+  umbrella header "Pods-NSURLSessionSample-umbrella.h"
+
+  export *
+  module * { export * }
+}

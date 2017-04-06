@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ViewController: UIViewController {
 
@@ -24,7 +25,7 @@ class ViewController: UIViewController {
         
         config = URLSessionConfiguration.default
         urlSession = URLSession(configuration: config)
-        let past = ("asd",5)
+        _ = ("asd",5)
         
         // MARK:- HeaderField
         let HTTPHeaderField_ContentType         = "Content-Type"
@@ -37,7 +38,7 @@ class ViewController: UIViewController {
 
         
         
-        let callURL = URL.init(string: "https://itunes.apple.com/in/rss/newapplications/limit=10/json")
+        let callURL = URL.init(string: "https://demo3390286.mockable.io/realmCache")
         
         var request = URLRequest.init(url: callURL!)
         
@@ -47,14 +48,18 @@ class ViewController: UIViewController {
         request.httpMethod = HTTPMethod_Get
         
         let dataTask = urlSession.dataTask(with: request) { (data,response,error) in
-            if error != nil{
-                return
-            }
-            do {
-                let resultJson = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:AnyObject]
-                print("Result",resultJson!)
-            } catch {
-                print("Error -> \(error)")
+//            if error != nil{
+//                return
+//            }
+//            do {
+//                let resultJson = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:AnyObject]
+//                print("Result",resultJson!)
+//            } catch {
+//                print("Error -> \(error)")
+//            }
+            let json = JSON(data: data!)
+            for item in json["Student"].arrayValue {
+                print(item)
             }
         }
         
